@@ -1,0 +1,40 @@
+<html>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="start">
+            <h4>Welcome to JS Bankers!</h4>
+            <strong><em>The main goal of the game is to get 1 hundred thousand JS dollars!</em></strong><br><br>
+            <strong>Press EARN To Start!!!</strong>
+        </div>
+        <div class="buttons">
+            <button class="btn" onclick="earn()"><strong>EARN</strong></button>
+            <button class="btn" onclick="hire()"><strong>HIRE</strong></button>
+            <button class="btn" onclick="invest()"><strong>INVEST</strong></button>
+            <button class="btn" onclick="lottery()"><strong>LOTTERY</strong></button>
+            <button class="btn" onclick="robbery()"><strong>ROB</strong></button>
+            <button class="btn" onclick="codes()"><strong>CODES</button>
+            <button class="btn" onclick="help()"><strong>HELP</strong></button>
+            <a href = "https://discord.com/invite/zBQF3ts486" target = "_blank">
+                <button class="btn"><strong>DISCORD</strong></button>
+            </a>
+        </div>
+        <div class="texts">
+            Cash earn : 
+            <text id="cash">0</text> 💲<br>
+            Total sum of money : 
+            <text id="total">0</text> 💰<br><br>
+            <text id="hiring"></text><br><br>
+            <text id="invest"></text><br><br>
+            <text id="lucky"></text><br><br>
+            <text id="rob"></text><br><br>
+            <text id="good_job"></text><br><br>
+            <text id="rng_worker"></text><br><br>
+            <text id="codes"></text><br><br>
+            <text id="help"></text><br><br>
+            <tetx id="congrats"><strong></strong></text><br>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>

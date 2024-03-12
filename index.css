@@ -1,0 +1,27 @@
+.buttons {
+    display: inline;
+}
+
+.btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 6px;
+    color: #36FF00;
+    background: #093500;
+    border: none;
+    padding: 3px 8px 3px 8px;
+    border-radius: 3px;
+}
+
+html, body {
+    background: #000000;
+}
+
+.texts {
+    color: #00E700;
+    font-weight: bold;
+}
+
+.start {
+    color: #00E700;
+}
