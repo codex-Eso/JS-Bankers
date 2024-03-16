@@ -1,7 +1,7 @@
 /*Emotes: 💰 💲 ✅ 💸 🤑 📊 🏃 💰 🫴*/
 /* Things for update:
-✅Make game more interactive for users (e.g. Add emotes n images) (last)
-✅��Add more emotes (last)
+✅ Make game more interactive for users (e.g. Add emotes n images) (last)
+✅ Ad�dd more emotes (last)
 ✅ Adding how much each button costed with messages
 ✅ Adding cooldowns = Adding autoclicker
 ✅ Adding items (dropped from you pressing earning)
