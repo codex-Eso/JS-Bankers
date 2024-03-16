@@ -9,7 +9,7 @@
     border: none;
     padding: 3px 8px 3px 8px;
     border-radius: 3px;
-    font-size: 18px;
+    font-size: 15px;
     font-family: Arial, Helvetica, sans-serif
 }
 
@@ -24,9 +24,10 @@ text {
 }
 
 .texts {
+    margin-top: 25px;
     color: #00E700;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     display: flex;
     justify-content: space-around
 }
@@ -37,5 +38,5 @@ text {
 
 .start {
     color: #00E700;
-    font-size: 18px;
+    font-size: 15px;
 }
