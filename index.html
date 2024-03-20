@@ -10,13 +10,10 @@
         </div>
         <br>
         <div class="buttons">
-            <button class="btn" onclick="earn()"><strong>EARN💲</strong></button>
-            <button class="btn" onclick="hire()"><strong>HIRE🫴</s��strong></button>
+            <button class="btn" onclick="hire()"><strong>HIRE🫴</strong�g></button>
             <button class="btn" onclick="invest()"><strong>INVEST📊</strong></button>
-            <button class="btn" onclick="lottery()"><strong>LOTTERY💰</strong></button>
-            <button class="btn" onclick="robbery()"><strong>ROB🏃</strong></button>
-            <button class="btn" onclick="codes()"><strong>CODES🧑‍💻</button>
             <button class="btn" onclick="help()"><strong>HELP❓</strong></button>
+            <button class="btn" onclick="find()"><strong>FIND 👀</strong></button>
             <a href = "https://discord.com/invite/zBQF3ts486" target = "_blank">
                 <button class="btn"><strong>DISCORD👋</strong></button>
             </a>
@@ -24,65 +21,78 @@
         <br><br>
         <div class="texts">
             <div class="your_money">
-                Cash earn : 
-                <text id="cash">0</text> 💲<br><br>
-                Auto earn :
+                Earnings :
                 <text id="idle">0</text> 🤑<br><br>
                 Total sum of money : 
                 <text id="total">0</text> 💰<br><br>
+                <text id="hunt"></text><br><br>
                 <text id="items"></text><br><br>
                 <text id="op"></text><br><br>
             </div>
             <text id="hiring"></text><br><br>
             <text id="extra"></text><br><br>
             <text id="invest"></text><br><br>
-            <text id="lucky"></text><br><br>
-            <text id="rob"></text><br><br>
             <text id="good_job"></text><br><br>
-            <text id="rng_worker"></text><br><br>
-            <text id="codes"></text><br><br>
             <text id="help"></text><br><br>
             <text id="congrats"><strong></strong></text><br>
         </div>
         <script src="index.js"></script>
         <script>
-            let money = 0
-            let moneyEl = document.getElementById("cash")
-            let total_money = 0
+            let total_money = 100
             let totalEl = document.getElementById("total")
             let textEl = document.getElementById("good_job")
             let textHire = document.getElementById("hiring")
+            let hired_total = 0
             let checker1 = 0
-            let checker2 = 0
             let workers = 0
-            let counter = 1
-            let rng_worker = 0
-            let rngText = document.getElementById("rng_worker")
-            let luckyText = document.getElementById("lucky")
-            let robText = document.getElementById("rob")
-            let checker3 = 0
-            let reward = document.getElementById("codes")
-            let claimed = 0
             let helper = document.getElementById("help")
             let helped = 0
             let investment = document.getElementById("invest")
-            let checker4 = 0
             let finale = document.getElementById("congrats")
-            let start = false
+            let start = true
             let idleEl = document.getElementById("idle")
             let idle_cash = 0
             let extras = document.getElementById("extra")
             let item = document.getElementById("items")
             let gg = document.getElementById("op")
-            let op_items = ["LunchBox", "Robot", "Speedy Gloves"]
-            let claimed1 = 0
+            let op_items = ["Robot"]
             let claimed2 = 0
-            let claimed3 = 0
-            
+            let counter = 2
+            let find_item = document.getElementById("hunt")
+            let checker2 = 0
+
+            function find() {
+                if (workers < 10) {
+                    find_item.textContent = "You need 10 workers to do this!"
+                } else if (workers >= 10) {
+                    if (op_luck() === 1 && claimed2 === 0) {
+                        find_item.textContent = "LUCKY!!! You found a broken Robot 🤖 that looks fixable, and after repairing it, it was able to help you earn more auto bucks!"
+                        claimed2 = 1
+                    } else if (op_luck() === 1 && claimed2 === 1) {
+                        find_item.textContent = "You found another broken robot, but it is not fixable!🥲"
+                    } else if (op_luck() === "Money") {
+                        random_amt = Math.round(Math.random(0,1)*400)
+                        find_item.textContent = `Your workers found some items that are worth ${random_amt} JS dollars!🤑`
+                        division = Math.round(random_amt / 100)
+                        counter += division
+                        total_money += random_amt
+                        totalEl.textContent = total_money
+                    } else {
+                        find_item.textContent = `Your workers found nothing! You needed to pay your workers for helping you find items! - 500 JS dollars 💸`
+                        total_money -= 500
+                        totalEl.textContent = total_money
+                    }                    
+                }
+                if (total_money >= (counter * 100)) {
+                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
+                    counter += 1
+                }
+            }
+
             function item_luck() {
-                nice_luck = Math.round(Math.random(0,1)*150)
+                nice_luck = Math.round(Math.random(0,1)*100)//change
                 random_item = Math.round(Math.random(0,1)*3)
-                if (nice_luck === 75) {
+                if (nice_luck === 1) {
                     return(random_item)
                 } else {
                     return("Nothing")
@@ -90,16 +100,24 @@
             }
             
             function op_luck() {
-                nice_luck = Math.round(Math.random(0,1)*300)
-                random_item = Math.round(Math.random(0,1)*2)
+                nice_luck = Math.round(Math.random(0,1)*200)//change
+                random_item = 1 //change
                 if (nice_luck === 150) {
                     return(random_item)
+                } else if (nice_luck <= 100) {
+                    return("Money")
                 } else {
                     return("Nothing")
                 }
             }
             
             function auto() {
+                //time
+                timer = 7000
+                for (i = workers; i > 0; i--) {
+                    timer -= 10
+                }
+                //auto earn
                 if (start === true && claimed2 === 1) {
                     idle_cash += 10
                     if (workers !== 0) {
@@ -122,99 +140,75 @@
                     totalEl.textContent = total_money
                 }
                 idle_cash = 0
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks!👏`
-                    counter += 1
-                }
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
-                }
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!"
-                    checker1 = 1
-                }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰 button!"
-                    checker2 = 1
-                }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                }
-                if (total_money >= 500 && checker4 === 0) {
-                    investment.textContent = "Now you can use the INVEST📊 button!"
-                    checker4 = 1
-                }
-                setTimeout(auto, 1000)
-            }
-            
-            function codes() {
-                code = prompt("Enter code")
-                if (code === "Beta Tester" && claimed === 0) {
-                    reward.textContent = "Thanks for playing! Much appreciated!🙏"
-                    total_money += 100000
+                //item luck
+                if (item_luck() === 0) {
+                    item.textContent = `NICE! You were working and found a shoe 👟 that cost 200 JS dollars!`
+                    total_money += 200
                     totalEl.textContent = total_money
-                    claimed = 1
-                } else if (code !== "Beta Tester") {
-                    reward.textContent = "Invalid Code!"
-                } else if (claimed === 1) {
-                    reward.textContent = "You already claimed this!"
-                }
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks!👏`
                     counter += 1
-                } 
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
+                } else if (item_luck() === 1) {
+                    item.textContent = `NICE! You were working and found some books 📚 that cost 300 JS dollars!`
+                    total_money += 300
+                    totalEl.textContent = total_money
+                    counter += 2
+                } else if (item_luck() === 2) {
+                    item.textContent = `NICE! You were working and found a parcel 📦 that contained an antique! It costed 500 JS dollars!`
+                    total_money += 500
+                    totalEl.textContent = total_money
+                    counter += 4
+                } else if (item_luck() === 3) {
+                    purse_money = Math.round(Math.random(0,1)*400)
+                    division = Math.round(purse_money / 100)
+                    item.textContent = `NICE! You were working and found a purse 👛 that contained ${purse_money} JS dollars! The wallet itself costed 100 JS dollars!`
+                    total_money += purse_money + 100
+                    totalEl.textContent = total_money
+                    counter += division
+                } else {
+                    item.textContent = "You were glancing around your surroundings while working and found nothing.🫤"
                 }
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!"
+                //other texts
+                if (total_money >= (counter * 100)) {
+                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
+                    counter += 1
+                }
+                if (workers >= 2 && checker2 === 0) {
+                    find_item.textContent = "Now you can use the FIND button!"
+                    checker2 = 1
+                } else {
+                    find_item.textContent = ""
+                }
+                if (total_money >= 500 && checker1 === 0) {
+                    investment.textContent = "Now you can use the INVEST button!"
                     checker1 = 1
                 }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰 button!"
-                    checker2 = 1
-                }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                }
-                if (total_money >= 500 && checker4 === 0) {
-                    investment.textContent = "Now you can use the INVEST📊 button!"
-                    checker4 = 1
-                }
-                if (claimed === 0 || claimed === 1) {
-                    counter = 1000
-                }
-                if (rng_worker === 0) {
-                    rngText.textContent = ""
-                }
-                if (helped === 1) {
+                if (helped === 2) {
                     helper.textContent = ""
+                    helped = 0
                 }
-                rng_worker = 0
+                setTimeout(auto, timer)
             }
             
-            function invest_num(num) {
+            function check_num(num) {
                 return isNaN(num)
             }
             
             function invest() {
-                if (total_money < 500 && checker4 === 1) {
+                if (total_money < 500 && checker1 === 1) {
                     investment.textContent = "You need at least 500 JS dollars for investment!"
-                } else if (total_money < 500 && checker4 === 0) {
+                    extras.textContent = ""
+                } else if (total_money < 500 && checker1 === 0) {
                     investment.textContent = "Reach 500 JS dollars first to unlock this phrase"
                 } else {
                     invest_money = prompt("Enter how much money you would like to invest💲")
-                    non = invest_num(invest_money)
+                    non = check_num(invest_money)
                     while (non === true) {
                         invest_money = prompt("Enter how much money you would like to invest💲")
-                        non = invest_num(invest_money)
+                        non = check_num(invest_money)
                     }
                     invest_money = parseInt(invest_money)
                     if (total_money < invest_money) {
                         alert("You don't have enough money!")
-                    } else {
+                    } else if (total_money >= invest_money) {
                         total_money -= invest_money
                         company = Math.round(Math.random(0,1)*3)
                         if (company === 1) {
@@ -244,387 +238,89 @@
                         }
                     }
                 }
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks!👏`
+                if (total_money < 0) {
+                    total_money = 0
+                    totalEl.textContent = total_money
+                }
+                if (total_money >= (counter * 100)) {
+                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
                     counter += 1
                 }
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
-                }
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!"
-                    checker1 = 1
-                } else {
-                    textHire.textContent = ""
-                }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰 button!"
-                    checker2 = 1
-                } else {
-                    luckyText.textContent = ""
-                }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                } else {
-                    robText.textContent = ""
-                }
-                if (helped === 1) {
+                if (helped === 2) {
                     helper.textContent = ""
                 }
-                if (rng_worker === 0) {
-                    rngText.textContent = ""
-                }
-                if (claimed === 0 || claimed === 1) {
-                    reward.textContent = ""
-                }
-                if (helped === 1) {
-                    helper.textContent = ""
-                }
-                rng_worker = 0
+                textHire.textContent = ""
+                find_item.textContent = ""
             }
 
             function help() {
-                helper.textContent = "Earn : Earn +1 JS dollar. Hire: Hire a worker who has a small chance in giving you +10 JS dollars when the EARN button is activated, it also gives an additional +1 JS dollar in auto earn. Rob : Rob a bank to have a small chance of receiving 30% of your total JS dollars, or risk all your money. Lottery : Costs 1000 JS dollars for participation, but stand a very slim chance of winning big bucks. Invest : Invest any amout of JS dolars in businesses to either lose/earn money. Codes: Enter a code to receive rewards! Auto Earn: Not an interactive button, but allows you to earn money while being idle. Updates: For update info, click the DISCORD button!"
-                helped = 1
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks!👏`
+                helper.textContent = "Hire: Gives an additional +1 JS dollar in auto earn. Invest : Invest any amout of JS dolars in businesses to either lose/earn money. Find : Find items that will bring benefits! Requires 5 workers to do so! Auto Earn: Not an interactive button, but allows you to earn money while being idle. Updates: For update info, click the DISCORD button! (Press the HELP button ONCE again to exit)"
+                helped += 1
+                if (total_money >= (counter * 100)) {
+                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
                     counter += 1
                 }
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
-                }
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!�"
-                    checker1 = 1
-                } else {
-                    textHire.textContent = ""
-                }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰 button!"
-                    checker2 = 1
-                } else {
-                    luckyText.textContent = ""
-                }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                } else {
-                    robText.textContent = ""
-                }
-                if (total_money >= 500 && checker4 === 0) {
-                    investment.textContent = "Now you can use the INVEST📊 button!"
-                    checker4 = 1
-                } else {
-                    investment.textContent = ""
-                    extras.textContent = ""
-                }
-                if (rng_worker === 0) {
-                    rngText.textContent = ""
-                }
-                if (claimed === 0 || claimed === 1) {
-                    reward.textContent = ""
-                }
-                rng_worker = 0
-            }
+                textHire.textContent = ""
+                investment.textContent = ""
+                extras.textContent = ""
+                find_item.textContent = ""
+            }   
 
             function hire() {
-                if (total_money < 100 && checker1 === 0) {
-                    textHire.textContent = "Reach 100 JS dollars first to unlock this phrase!"
-                } else {
-                    to_hire = prompt("Enter how many workers you would like to hire")
-                    to_hire = parseInt(to_hire)
+                investment.textContent = ""
+                extras.textContent = ""
+                to_hire = prompt("Enter how many workers you would like to hire🫴")
+                non = check_num(to_hire)
+                while (non === true) {
+                    to_hire = prompt("Enter how many workers you would like to hire🫴")
+                    non = check_num(to_hire)
                 }
+                to_hire = parseInt(to_hire)
+                hired_total += to_hire
+                limit_worker = 500 - hired_total
                 if (total_money < (100 * to_hire)) {
                     textHire.textContent = "You don't have enough money!"
-                } else {
+                    hired_total -= to_hire
+                } else if (limit_worker < 0) {
+                    textHire.textContent = "You have exceeded the limit of workers!"
+                    hired_total -= to_hire
+                } else if (total_money >= (100 * to_hire)) {
                     textHire.textContent = `Hired! -${100 * to_hire} JS dollars 💸`
                     let hired = 100
                     total_money -= (hired * to_hire)
-                    moneyEl.textContent = money
                     totalEl.textContent = total_money
-                    money = 0
                     workers += to_hire
                     return(workers)
                 }
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks👏!`
+                if (total_money >= (counter * 100)) {
+                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
                     counter += 1
                 }
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
-                } 
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!"
-                    checker1 = 1
-                }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰 button!"
+                if (workers >= 2 && checker2 === 0) {
+                    find_item.textContent = "Now you can use the FIND button!"
                     checker2 = 1
                 } else {
-                    luckyText.textContent = ""
+                    find_item.textContent = ""
                 }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                } else {
-                    robText.textContent = ""
-                }
-                if (total_money >= 500 && checker4 === 0) {
-                    investment.textContent = "Now you can use the INVEST📊 button!"
-                    checker4 = 1
-                } else {
-                    investment.textContent = ""
-                    extras.textContent = ""
-                }
-                if (rng_worker === 0) {
-                    rngText.textContent = ""
-                }
-                if (claimed === 0 || claimed === 1) {
-                    reward.textContent = ""
-                }
-                if (helped === 1) {
-                    helper.textContent = ""
-                }
-                rng_worker = 0
+                investment.textContent = ""
+                extras.textContent = ""
             }
 
-            function lottery() {
-                if (total_money < 1000 && checker2 === 0) {
-                    luckyText.textContent = "Reach 1000 JS dollars first to unlock this phrase!"
-                } else if (total_money < 1000) {
-                    luckyText.textContent = "You don't have enough money!"
-                } else {
-                    let ticket = 1000
-                    total_money -= ticket
-                    moneyEl.textContent = money
-                    totalEl.textContent = total_money
-                    money = 0
-                    luck = Math.round(Math.random(0,1)*99)
-                    if (luck === 50) {
-                        luckyText.textContent = `Congrats! You won the lottery! Prize : 10000 JS dollars!💵`
-                        total_money += 11000
-                        totalEl.textContent = total_money
-                    } else {
-                        luckyText.textContent = "Unlucky! -1000 JS dollars 💸"
-                        }
-                }
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks!👏`
-                    counter += 1
-                }
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
-                }
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!"
-                    checker1 = 1
-                } else {
-                    textHire.textContent = ""
-                }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰� button!"
-                    checker2 = 1
-                }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                } else {
-                    robText.textContent = ""
-                }
-                if (total_money >= 500 && checker4 === 0) {
-                    investment.textContent = "Now you can use the INVEST📊 button!"
-                    checker4 = 1
-                } else {
-                    investment.textContent = ""
-                    extras.textContent = ""
-                }
-                if (rng_worker === 0) {
-                    rngText.textContent = ""
-                }
-                if (claimed === 0 || claimed === 1) {
-                    reward.textContent = ""
-                }
-                if (helped === 1) {
-                    helper.textContent = ""
-                }
-                rng_worker = 0
-            }
-
-            function robbery() {
-                if (total_money < 2000 && checker3 === 0) {
-                    robText.textContent = "Reach 2000 JS dollars first to unlock this phrase!"
-                } else {
-                    money = 0
-                    moneyEl.textContent = money
-                    luck = Math.round(Math.random(0,1)*9)
-                    if (luck === 0) {
-                        robbed = Math.round(0.3 * total_money)
-                        robText.textContent = `🏃Congrats! You managed to steal ${robbed} JS dollars from the bank!💰`
-                        total_money += robbed
-                        totalEl.textContent = total_money
-                        checker2 = 1
-                    } else if (luck === 3 || luck === 7) {
-                        robText.textContent = "🏃You tried stealing money from the bank...but failed! -0 JS dollars 💸"
-                    } else {
-                        robText.textContent = `🏃Oops! You let your guard down and got caught by the police!😓 You lose all your money! -${total_money} JS dollars 💸`
-                        total_money -= total_money
-                        totalEl.textContent = total_money
-                    }
-                }
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks!👏`
-                    counter += 1
-                }
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
-                }
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!"
-                    checker1 = 1
-                } else {
-                    textHire.textContent = ""
-                }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰 button!"
-                    checker2 = 1
-                } else {
-                    luckyText.textContent = ""
-                }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                }
-                if (total_money >= 500 && checker4 === 0) {
-                    investment.textContent = "Now you can use the INVEST📊 button!"
-                    checker4 = 1
-                } else {
-                    investment.textContent = ""
-                    extras.textContent = ""
-                }
-                if (rng_worker === 0) {
-                    rngText.textContent = ""
-                }
-                if (claimed === 0 || claimed === 1) {
-                    reward.textContent = ""
-                }
-                if (helped === 1) {
-                    helper.textContent = ""
-                }
-                rng_worker = 0
-            }
-
-            function earn() {
-                start = true
-                let done1 = 1
-                let done2 = 1
-                if (workers != 0) {
-                    for (i = workers; i > 0; i--) {
-                        luck = Math.round(Math.random(0,1)*19)
-                        if (luck === 10 || luck === 1) {
-                            rng_worker += 1
-                            total_money += 10
-                        } else {
-                            textHire.textContent = ""
-                        }
-                        if (claimed1 === 1) {
-                            total_money += 15
-                            rngText.textContent = `Your ${rng_worker} hired worker manage to earn you 25 JS dollars each!👍`
-                        } else {
-                            rngText.textContent = `Your ${rng_worker} hired worker manage to earn you 10 JS dollars each!👍`
-                        }
-                        totalEl.textContent = total_money
-                    }
-                }
-                if (claimed3 === 1) {
-                    money += 4
-                }
-                money += 1
-                total_money += money
-                moneyEl.textContent = money
-                totalEl.textContent = total_money
-                money = 0
-                if (item_luck() === 0) {
-                    item.textContent = `NICE! You were working and found a shoe 👟 that cost 200 JS dollars!`
-                    total_money += 200
-                    totalEl.textContent = total_money
-                } else if (item_luck() === 1) {
-                    item.textContent = `NICE! You were working and found some books 📚 that cost 300 JS dollars!`
-                    total_money += 300
-                    totalEl.textContent = total_money
-                } else if (item_luck() === 2) {
-                    item.textContent = `NICE! You were working and found a parcel 📦 that contained an antique! It costed 500 JS dollars!`
-                    total_money += 700
-                    totalEl.textContent = total_money
-                } else if (item_luck() === 3) {
-                    purse_money = Math.round(Math.random(0,1)*450)
-                    item.textContent = `NICE! You were working and found a purse 👛 that contained ${purse_money} JS dollars! The wallet itself costed 50 JS dollars!`
-                    total_money += purse_money + 50
-                    totalEl.textContent = total_money
-                } else {
-                    item.textContent = "You were glancing around your surroundings while working and found nothing.🫤"
-                }
+            /*function earn() {
                 if (op_luck() === 0 && claimed1 === 0) {
                     gg.textContent = "LUCKY!!! You found a LunchBox 🥡 that is packed with food! You had your own lunch, so you gave it to your workers, and now they feel energized!"
                     claimed1 = 1
                 } else if (op_luck() === 1 && claimed2 === 0) {
                     gg.textContent = "LUCKY!!! You found a broken Robot 🤖 that looks fixable, and after repairing it, it was able to help you earn more side cash!"
                     claimed2 = 1
-                } else if (op_luck() === 2 && claimed3 === 0) {
-                    gg.textContent = "LUCKY!!! You found a pair of Speedy Gloves 🧤 which allowed you to do things 10x more efficiently! Hence, you can make more money!"
-                    claimed3 = 1
                 } else if (op_luck() === 0 && claimed1 === 1) {
                     gg.textContent = "You found another LunchBox, but your workers were full from the lunch you gave them. Maybe next time!🫤"
                 } else if (op_luck() === 1 && claimed2 === 1) {
                     gg.textContent = "You found another broken robot, but it is not fixable!🥲"
-                } else if (op_luck() === 2 && claimed3 === 1) {
-                    gg.textContent = "You found another pair of gloves, but they look rusted, so you threw them away.🫤"
                 } else {
                     gg.textContent = ""
                 }
-                if (total_money >= counter * 100) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS bucks!👏`
-                    counter += 1
-                }
-                if (total_money >= 1000000000) {
-                    finale.textContent = "CONGRATS! YOU ACHIEVED 1 BILLION JS DOLLARS!!! 🤑💸 THANKS FOR PLAYING!"
-                }
-                if (total_money >= 100 && checker1 === 0) {
-                    textHire.textContent = "Now you can use the HIRE🫴 button!"
-                    checker1 = 1
-                } else {
-                    textHire.textContent = ""
-                }
-                if (total_money >= 1000 && checker2 === 0) {
-                    luckyText.textContent = "Now you can use the LOTTERY💰 button!"
-                    checker2 = 1
-                } else {
-                    luckyText.textContent = ""
-                }
-                if (total_money >= 2000 && checker3 === 0) {
-                    robText.textContent = "Now you can use the ROB🏃 button!"
-                    checker3 = 1
-                } else {
-                    robText.textContent = ""
-                }
-                if (total_money >= 500 && checker4 === 0) {
-                    investment.textContent = "Now you can use the INVEST📊 button!"
-                    checker4 = 1
-                } else {
-                    investment.textContent = ""
-                    extras.textContent = ""
-                }
-                if (rng_worker === 0) {
-                    rngText.textContent = ""
-                }
-                if (claimed === 0 || claimed === 1) {
-                    reward.textContent = ""
-                }
-                if (helped === 1) {
-                    helper.textContent = ""
-                }
-                rng_worker = 0
-            }
+            }*/
         </script>
     </body>
 </html>
