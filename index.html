@@ -1,22 +1,27 @@
 <html>
     <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="main.css">
     </head>
     <body onload="auto()">
         <div class="start">
             <h4>Welcome to JS Bankers!</h4>
-            <strong>The main goal of the game is to get 1 billion JS dollars! 🤑</strong><br><br>
-            <strong>Press EARN To Start!!!</strong>
+            <strong>Try to find all the<button class="special_btn" onclick = "special()">achievements🏆!</button>Good Luck!😁</strong><br><br>
+            <strong>Press <button class="btn" onclick="starts()"><strong>EARN</strong></button>For A Tutorial!!!</strong>
         </div>
         <br>
         <div class="buttons">
-            <button class="btn" onclick="hire()"><strong>HIRE🫴</strong�g></button>
+            <button class="btn" onclick="hire()"><strong>HIRE🫴</strong></button>
             <button class="btn" onclick="invest()"><strong>INVEST📊</strong></button>
             <button class="btn" onclick="help()"><strong>HELP❓</strong></button>
-            <button class="btn" onclick="find()"><strong>FIND 👀</strong></button>
+            <button class="btn" onclick="find()"><strong>FIND👀</strong></button>
+            <button class="btn" onclick="mart()"><strong>MARKET🏪</strong></button>
+            <button class="btn" onclick="crafting()"><strong>CRAFT🛠</strong></button>
+            <button class="btn" onclick="bag()"><strong>INVENTORY🎒</strong></button>
+            <button class="btn" onclick="achievements()"><strong>ACHIEVEMENTS🏆</button>
             <a href = "https://discord.com/invite/zBQF3ts486" target = "_blank">
                 <button class="btn"><strong>DISCORD👋</strong></button>
             </a>
+            <button class="btn" onclick="crediting()"><strong>CREDITS🙏</strong></�button>
         </div>
         <br><br>
         <div class="texts">
@@ -25,167 +30,655 @@
                 <text id="idle">0</text> 🤑<br><br>
                 Total sum of money : 
                 <text id="total">0</text> 💰<br><br>
-                <text id="hunt"></text><br><br>
                 <text id="items"></text><br><br>
-                <text id="op"></text><br><br>
+                <text id="hunt"></text><br><br>
+                <text id="craft"></text><br><br>
+                <text id="congrats"><strong></strong></text>
             </div>
             <text id="hiring"></text><br><br>
             <text id="extra"></text><br><br>
             <text id="invest"></text><br><br>
-            <text id="good_job"></text><br><br>
-            <text id="help"></text><br><br>
-            <text id="congrats"><strong></strong></text><br>
+            <text id="market"></text><br><br>
+            <text id="stuff"></text><br><br>
         </div>
         <script src="index.js"></script>
         <script>
-            let total_money = 100
+            //security
+            document.addEventListener("contextmenu", function(e){
+                e.preventDefault();
+            }, false)
+            document.addEventListener("keydown", function(e){
+                if (e.ctrlKey || e.keyCode == 123) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            })
+            let total_money = 0
             let totalEl = document.getElementById("total")
-            let textEl = document.getElementById("good_job")
             let textHire = document.getElementById("hiring")
             let hired_total = 0
             let checker1 = 0
             let workers = 0
-            let helper = document.getElementById("help")
-            let helped = 0
             let investment = document.getElementById("invest")
-            let finale = document.getElementById("congrats")
-            let start = true
             let idleEl = document.getElementById("idle")
             let idle_cash = 0
             let extras = document.getElementById("extra")
             let item = document.getElementById("items")
-            let gg = document.getElementById("op")
-            let op_items = ["Robot"]
-            let claimed2 = 0
-            let counter = 2
+            let claimed2 = 0//robot
+            let claimed1 = 0//lunchbox
+            let claimed3 = 0//watch
+            let claimed4 = 0//rich hat
+            let coin_luck = 0//rich hat
             let find_item = document.getElementById("hunt")
             let checker2 = 0
+            let shop = document.getElementById("market")
+            let user_item = []
+            let market_item = ["Shoe👟", "Book📔", "Antique🕰", "Purse👛", "Mechanical Part⚙"]
+            let op_item = ["Battery🔋","Nut And Bolt🔩","Torn Recipe Part A📜","Torn Recipe Part B📜","Sandwich🥪","Clock Piece🕛","Scarf🧣","Hat👒"]
+            let random_op_item = 0
+            let steal = 0
+            let checker3 = 0
+            let inventory = document.getElementById("stuff")
+            let checker4 = 0
+            let crafts = document.getElementById("craft")
+            let checker5 = 0
+            //card
+            let cards = 0
+            let cs = 0
+            let cardd = 0
+            let cd = 0
+            let cardh = 0
+            let ch = 0
+            let turns = 0
+            let cardc = 0
+            let timer = 0
+            //achievements
+            let earned = document.getElementById("congrats")
+            let counter = 0
+            let crafted = 0
+            let bought = 0
+            let selling = 0
+            let robbing = 0
+            let unlucky = 0
+            let lucky = 0
+            let collect = 0
+            let card = 0
+            let trendy = 0
+            let part = 0
+            let coin = 0
+            let checker6 = 0
+            //start
+            let starting = 0
+            let start = true
+            
+            function crediting() {
+                alert("Credits and Special Thanks:\n\nThe Website Where I Did All My Coding\n👉https://scrimba.com/\n\nWebsite Creation\n👉https://github.com/\n👉https://www.netlify.com/\n\nCreator : Game Beta Studios (Codex_Eso/Esmond)\n\nSpecial Thanks : All Beta Testers :)")
+            }
+            
+            function special() {
+                earned.textContent = "Achievement Unlocked 🏆: Curiousity!"
+                counter += 1
+            }
+            
+            function achievements() {
+                if (start === true && counter === 25) {
+                    alert("All Achievements 🏆:Curiousity : Find the unique button\n\nEnough Is Enough : Get the max amount of workers you can hire\n\nMaxed Trend : Sell your trendy watch\n\nRisk Taker : Invest 10000 JS dollars\n\nSPECIAL DEAL! : Get the mechanical part\n\nThe Buyer : Buy a item from the trendy market\n\nThe Card Collector : Obtain 9 cards in auto earn\n\nThe Collector : Obtain 5 items in auto earn\n\nThe CraftsMan : Craft 1 item\n\nThe Lucky : Get 1 item from find\n\nThe Reseller? : Sell 5 items in the trendy market\n\nThe Rich one who always buys stuff 🙄 : Buy 5 items\n\nThe Robber : Rob the market\n\nThe Seller : Sell 1 item in the trendy market\n\nThe Social : Click on the DISCORD button\n\nThe Superior Crafter : Craft 4 items\n\nThe TryHard : Get all achievements\n\nThere Is An Achievement For This : Click on the HELP button, then type achievements\n\nTutorial : Go through the tutorial\n\nUp To Trend : Get a trendy watch\n\nYou had a four leaf clover, did you? : Get the golden coin\nAchievements : 23/23")
+                    if (counter === 24) {
+                        earned.textContent = "Achievement Unlocked 🏆: The TryHard!"
+                        counter += 1
+                    }
+                } else if (counter !== 25) {
+                    alert(`You need to complete all 23 achievements to complete the game!\nAchievements : ${counter}/23`)
+                }
+            }
+            
+            function discord() {
+                if (start === true) {
+                    earned.textContent = "Achievement Unlocked 🏆: The Social!"
+                    counter += 1
+                }
+            }
+            
+            function starts() {
+                starting += 1
+                if (starting === 1) {
+                    item.textContent = "Hi, thanks for playing, now let's start earning some JS dollars! (PRESS EARN TO CONTINUE)"
+                } else if (starting === 2) {
+                    item.textContent = ""
+                    textHire.textContent = "On your left, you will see Earnings. That's the total amount of money you earn automatically every 3 seconds! (PRESS EARN TO CONTINUE)"
+                } else if (starting === 3) {
+                    textHire.textContent = ""
+                    extras.textContent = "Look out for how much money you have with you as they will play an important part later only! (PRESS EARN TO CONTINUE)"
+                } else if (starting === 4) {
+                    extras.textContent = ""
+                    investment.textContent = "You will start with 100 JS dollars for you to start hiring a worker to help you gain more earnings! (PRESS EARN TO CONTINUE)"
+                } else if (starting === 5) {
+                    investment.textContent = ""
+                    shop.textContent = "But that's not all you can do with your money here! You can invest your money to either gain or lose more money, find and craft materials to gain boosts/benefits, and lastly, shop for items! (PRESS EARN TO CONTINUE)"
+                } else if (starting === 6) {
+                    shop.textContent = ""
+                    inventory.textContent = "The main goal for this game is to find all achievements! So good luck and enjoy! Make sure to join the Discord server by pressing the DISCORD button to receive updates about the game! (PRESS EARN TO CONTINUE)😁"
+                } else if (starting === 7) {
+                    inventory.textContent = ""
+                    earned.textContent = "Achievement Unlocked 🏆: Tutorial!"
+                    counter += 1
+                }
+            }
+            
+            function bag() {
+                if (start === true) {
+                    items = ""
+                    for (i = user_item.length - 1; i >= 0; i--) {
+                        if (i === 0) {
+                            items += user_item[i]
+                        } else {
+                            items += user_item[i] + ", "   
+                        }
+                    }
+                    inventory.textContent = `Your items:\n${items} (Press the INVENTORY button ONCE again to cancel)`
+                    checker4 += 1  
+                }
+            }
+
+            function crafting() {
+                if (start === true) {
+                    robot_item = 0
+                    lunchbox_item = 0
+                    rich_hat = 0
+                    crafts.textContent = "Crafting Recipes:\nRobot 🤖 = ⚙ + 🔩 + 🔋, LunchBox 🥡 = 📜 + 📜 + 🥪, Trendy Watch ⌚ = 🕛 + 🏪, Rich Hat 🎩 = 🪙 + 🧣 + 👒(Press the CRAFTING button TWICE again to cancel)"
+                    for (i = user_item.length - 1; i >= 0; i--) {
+                        if ("Battery🔋" === user_item[i]) {
+                            robot_item += 1
+                        }
+                        if ("Mechanical Part⚙" === user_item[i]) {
+                            robot_item += 1
+                        }
+                        if ("Nut And Bolt🔩" === user_item[i]) {
+                            robot_item += 1
+                        }
+                        if ("Torn Recipe Part A📜" === user_item[i]) {
+                            lunchbox_item += 1
+                        }
+                        if ("Torn Recipe Part B📜" === user_item[i]) {
+                            lunchbox_item += 1
+                        }
+                        if ("Sandwich🥪" === user_item[i]) {
+                            lunchbox_item += 1
+                        }
+                        if ("Golden Coin🪙" === user_item[i]) {
+                            rich_hat += 1
+                        }
+                        if ("Scarf🧣" === user_item[i]) {
+                            rich_hat += 1
+                        }
+                        if ("Hat👒" === user_item[i]) {
+                            rich_hat += 1
+                        }
+                    }
+                    if (robot_item >= 3 && checker5 === 1) {
+                        claimed2 += 1
+                        crafts.textContent = "Robot 🤖 successfully crafted! The Robot now helps you earn more auto cash! (Press the CRAFTING button ONCE again to cancel)"
+                        user_item.pop("Nut And Bolt🔩")
+                        user_item.pop("Mechanical Part⚙")
+                        user_item.pop("Battery🔋")
+                        user_item.push("Robot 🤖")
+                        robot_item = 0
+                        crafted += 1
+                    } else if (lunchbox_item >= 3 && checker5 === 1) {
+                        claimed1 += 1
+                        crafts.textContent = "LunchBox 🥡 successfully crafted! You fed your workers and they feel energized! (Press the CRAFTING button ONCE again to cancel)"
+                        user_item.pop("Torn Recipe Part B📜")
+                        user_item.pop("Torn Recipe Part A📜")
+                        user_item.pop("Sandwich🥪")
+                        lunchbox_item = 0
+                        crafted += 1
+                    } else if (rich_hat >= 3 && checker5 === 1) {
+                        if (claimed4 === 1) {
+                            crafts.textContent = "You have already crafted a Rich Hat 🎩 , hence you sold it instead and got 10000 JS dollars! 🤑"
+                            total_money += 10000
+                            totalEl.textContent = total_money
+                        } else {
+                            crafts.textContent = "Rich Hat 🎩 successfully crafted! You wore it on yourself and felt like the luckiest man for investments!"
+                            user_item.push("Rich Hat 🎩")
+                        }
+                        user_item.pop("Scarf🧣")
+                        user_item.pop("Golden Coin🪙")
+                        user_item.pop("Hat👒")
+                        claimed4 = 1
+                        rich_hat = 0
+                        crafted += 1
+                    }
+                    checker5 += 1
+                    if (crafted === 1) {
+                        earned.textContent = "Achievement Unlocked 🏆: The CraftsMan!"
+                        counter += 1
+                    } else if (crafted === 4) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Superior Crafter!"
+                        counter += 1
+                    }
+                }
+            }
+
+            function mart() {
+                if (start === true) {
+                    purchase = false
+                    if (workers >= 1) {
+                        random_item1 = Math.round(Math.random(0,1)*500)
+                        random_item2 = Math.round(Math.random(0,1)*1000)
+                        random_item3 = Math.round(Math.random(0,1)*700)
+                        random_item4 = Math.round(Math.random(0,1)*200)
+                        luck = Math.round(Math.random(0,1)*50)
+                        item_price = Math.round(Math.random(0,1)*30)
+                        if (item_price === 30 && claimed3 === 1) {
+                            item_price = 0
+                        } else if (item_price <= 15 && item_price !== 10) {
+                            item_price = random_item1
+                        } else if (item_price >= 16 && item_price !== 20) {
+                            item_price = random_item2
+                        } else if (item_price === 20) {
+                            item_price = random_item3
+                        } else if (item_price === 10) {
+                            item_price = random_item4
+                        }
+                        if (cs === 1 && item_price !== 0) {
+                            item_price = Math.round(item_price * 0.1)
+                        }
+                        item = Math.round(Math.random(0,1)*4)
+                        if (item === 0) {
+                            item = market_item[0]
+                        } else if (item === 1) {
+                            item = market_item[1]
+                        } else if (item === 2) {
+                            item = market_item[2]
+                        } else if (item === 3) {
+                            item = market_item[3]
+                        } else if (item === 4 && luck === 50) {
+                            item = market_item[4]
+                            item_price = random_item2
+                            part = 1
+                            if (part === 1) {
+                                earned.textContent = "Achievement Unlocked 🏆: SPECIAL DEAL!!"
+                                counter += 1
+                            }
+                        } else if (item === 4 && luck !== 50) {
+                            item = market_item[Math.round(Math.random(0,1)*4)]
+                            item_price = random_item1
+                        }
+                        if (item_price === 0) {
+                            alert(`Welcome to the trendy market! We offer many things that are hot right now! Here is one of the items that we will buy / sell now:\n\n${item} : FREE`)
+                        } else if (cs === 1) {
+                            alert(`Welcome to the trendy market! We offer many things that are hot right now! Here is one of the items that we will buy / sell now:\n\n${item} : ${item_price} (SPECIAL DISCOUNT)`)
+                            cs = 0
+                        } else {
+                            alert(`Welcome to the trendy market! We offer many things that are hot right now! Here is one of the items that we will buy / sell now:\n\n${item} : ${item_price}`)  
+                        }
+                        option = prompt("Buy or Sell? (You can press enter if you don't want to do neither of these options)")
+                        while (option !== "Buy" && option !== "Sell" && option !== "" && option !== "steal" && option !== "#trendywatch") {
+                            option = prompt("Buy or Sell? (You can press enter if you don't want to do neither of these options)")
+                        }
+                        if (option === "") {
+                            shop.textContent = "You left the market empty handed."
+                        } else if (option === "Buy") {
+                            shop.textContent = `Purchase done! You have bought a ${item}! - ${item_price} JS dollars💸!`
+                            if (total_money >= item_price) {
+                                total_money -= item_price
+                                totalEl.textContent = total_money
+                                user_item.push(item)
+                                bought += 1
+                            } else {
+                                shop.textContent = "You don't have enough money!"
+                            }
+                        } else if (option === "Sell") {
+                            for (i = item.length - 1; i >= 0; i--) {
+                                if (item === user_item[i] && purchase === false) {
+                                    shop.textContent = `Trade done! You have sold a ${item} for ${item_price} JS dollars to the trendy market 🫰!`
+                                    total_money += item_price
+                                    totalEl.textContent = total_money
+                                    purchase = true
+                                    user_item.pop(user_item)
+                                    selling += 1
+                                }
+                            }
+                            if (purchase === false) {
+                                shop.textContent = "You don't have that item in your inventory!"
+                            }
+                        } else if (option === "steal") {
+                            steal += 1
+                            if (steal >= 3) {
+                                shop.textContent = "You were caught stealing! The punishment was the confisacation of all your items and a - 1000 JS dollars 💸!"
+                                user_item = []
+                                if (total_money < 1000) {
+                                    total_money = 0
+                                    totalEl.textContent = total_money
+                                } else {
+                                    total_money -= 1000
+                                    totalEl.textContent = total_money
+                                }
+                                robbing = 1
+                                if (robbing === 1) {
+                                    earned.textContent = "Achievement Unlocked 🏆: The Robber!"
+                                    counter += 1
+                                }
+                            } else {
+                                total_money += 100
+                                totalEl.textContent = total_money
+                            }
+                        } else if (option === "#trendywatch") {
+                            shop.textContent = "Trendy Indeed!"
+                            if (claimed3 === 1) {
+                                shop.textContent = "You have gotten a Trendy Watch, so you sold it for 2000 JS dollars instead 🤑!"
+                                user_item.pop("Clock Piece🕛")
+                                total_money += 2000
+                                totalEl.textContent = total_money
+                                trendy += 1
+                            } else {
+                                for (i=user_item.length-1;i>=0;i--) {
+                                    if ("Clock Piece🕛" === user_item[i] && claimed3 === 0) {
+                                        shop.textContent = "You got yourself a Trendy Watch ⌚!"
+                                        user_item.pop("Clock Piece🕛")
+                                        user_item.push("Trendy Watch ⌚")
+                                        claimed3 = 1
+                                        trendy += 1
+                                        break   
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        shop.textContent = "You need to at least hire 1 worker!"
+                    }
+                    textHire.textContent = ""
+                    investment.textContent = ""
+                    extras.textContent = ""
+                    find_item.textContent = ""
+                    checker3 = 1 
+                    if (selling === 1) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Seller!"
+                        counter += 1
+                    } else if (selling === 5) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Reseller?!"
+                        counter += 1
+                    }
+                    if (bought === 1) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Buyer!"
+                        counter += 1
+                    } else if (bought === 5) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Rich one who always buys stuff 🙄!"
+                        counter += 1
+                    }
+                    if (trendy === 1) {
+                        earned.textContent = "Achievement Unlocked 🏆: Up To Trend!"
+                        counter += 1
+                    } else if (trendy === 2) {
+                        earned.textContent = "Achievement Unlocked 🏆: Maxed Trend!"
+                        counter += 1
+                    }
+                    if (total_money >= 1000000) {
+                        earned.textContent = "Achievement Unlocked 🏆: Millionaire!"
+                        counter += 1
+                    } else if (total_money >= 100000) {
+                        earned.textContent = "Achievement Unlocked 🏆: 1 in 10!"
+                        counter += 1
+                    }
+                }
+            }
 
             function find() {
-                if (workers < 10) {
-                    find_item.textContent = "You need 10 workers to do this!"
-                } else if (workers >= 10) {
-                    if (op_luck() === 1 && claimed2 === 0) {
-                        find_item.textContent = "LUCKY!!! You found a broken Robot 🤖 that looks fixable, and after repairing it, it was able to help you earn more auto bucks!"
-                        claimed2 = 1
-                    } else if (op_luck() === 1 && claimed2 === 1) {
-                        find_item.textContent = "You found another broken robot, but it is not fixable!🥲"
-                    } else if (op_luck() === "Money") {
-                        random_amt = Math.round(Math.random(0,1)*400)
-                        find_item.textContent = `Your workers found some items that are worth ${random_amt} JS dollars!🤑`
-                        division = Math.round(random_amt / 100)
-                        counter += division
-                        total_money += random_amt
-                        totalEl.textContent = total_money
-                    } else {
+                if (start === true) {
+                    if (workers < 20) {
+                        find_item.textContent = "You need 20 workers to do this!"
+                    } else if (op_luck() === "Nothing") {
                         find_item.textContent = `Your workers found nothing! You needed to pay your workers for helping you find items! - 500 JS dollars 💸`
                         total_money -= 500
                         totalEl.textContent = total_money
-                    }                    
+                        if (total_money < 0) {
+                            total_money = 0
+                            totalEl.textContent = total_money
+                        } 
+                        unlucky += 1
+                    } else if (op_luck() === "Money") {
+                        random_money = Math.round(Math.random(0,1)*500)
+                        find_item.textContent = `Your workers found ${random_money} JS dollars! 🤑`
+                        total_money += random_money
+                        totalEl.textContent = total_money
+                        unlucky = 0
+                    } else if (op_luck() === 5) {
+                        find_item.textContent = `Congrats! Your workers found you a ${op_item[random_op_item]}!`
+                        user_item.push(op_item[random_op_item])
+                        lucky += 1
+                        unlucky = 0
+                    } else {
+                        find_item.textContent = `Congrats! Your workers found you a ${op_item[random_op_item]}!`
+                        user_item.push(op_item[random_op_item])
+                        lucky += 1
+                        unlucky = 0
+                    }
                 }
-                if (total_money >= (counter * 100)) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
+                if (unlucky === 3) {
+                    earned.textContent = "Achievement Unlocked 🏆: The Unlucky!"
                     counter += 1
+                }
+                if (lucky === 0) {
+                    earned.textContent = "Achievement Unlocked 🏆: The Lucky!"
+                    counter += 1
+                }
+                if (total_money >= 1000000) {
+                    earned.textContent = "Achievement Unlocked 🏆: Millionaire!"
+                    counter += 1
+                } else if (total_money >= 100000) {
+                    earned.textContent = "Achievement Unlocked 🏆: 1 in 10!"
+                    counter += 1
+                }
+            }
+
+            function op_luck() {
+                if (start === true) {
+                    nice_luck = Math.round(Math.random(0,1)*1000000)
+                    random_op_item = Math.round(Math.random(0,1)*7)
+                    if (nice_luck === 500000) {
+                        return(random_item)
+                    } else if (nice_luck <= 499999) {
+                        return("Money")
+                    } else {
+                        return("Nothing")
+                    }             
                 }
             }
 
             function item_luck() {
-                nice_luck = Math.round(Math.random(0,1)*100)//change
-                random_item = Math.round(Math.random(0,1)*3)
-                if (nice_luck === 1) {
-                    return(random_item)
-                } else {
-                    return("Nothing")
-                }
-            }
-            
-            function op_luck() {
-                nice_luck = Math.round(Math.random(0,1)*200)//change
-                random_item = 1 //change
-                if (nice_luck === 150) {
-                    return(random_item)
-                } else if (nice_luck <= 100) {
-                    return("Money")
-                } else {
-                    return("Nothing")
+                if (start === true) {
+                    nice_luck = Math.round(Math.random(0,1)*50)
+                    random_item = Math.round(Math.random(0,1)*7)
+                    if (nice_luck === 1) {
+                        return(random_item)
+                    } else {
+                        return("Nothing")
+                    }
                 }
             }
             
             function auto() {
-                //time
-                timer = 7000
-                for (i = workers; i > 0; i--) {
-                    timer -= 10
-                }
-                //auto earn
-                if (start === true && claimed2 === 1) {
-                    idle_cash += 10
-                    if (workers !== 0) {
-                        for (i = workers; i > 0; i--) {
-                            idle_cash += 1
+                if (start === true) {
+                    //time
+                    if (cd === 1) {
+                        timer += 10
+                        if (timer === 1000) {
+                            cd = 0
                         }
+                    } else {
+                        timer = 3000
                     }
-                    total_money += idle_cash
-                    idleEl.textContent = idle_cash
-                    totalEl.textContent = total_money
-                } else if (start === true) {
-                    idle_cash += 1
-                    if (workers !== 0) {
-                        for (i = workers; i > 0; i--) {
-                            idle_cash += 1
+                    for (i = workers; i > 0; i--) {
+                        timer -= 10
+                    }
+                    //auto earn
+                    if (claimed2 >= 1) {
+                        idle_cash += 10 * claimed2
+                        if (workers !== 0) {
+                            for (i = workers; i > 0; i--) {
+                                if (claimed1 >= 1) {
+                                    idle_cash += 5 * claimed1
+                                } else {
+                                    idle_cash += 1
+                                }
+                            }
                         }
+                        total_money += idle_cash
+                        idleEl.textContent = idle_cash
+                        totalEl.textContent = total_money
+                    } else {
+                        idle_cash += 5
+                        if (workers !== 0) {
+                            for (i = workers; i > 0; i--) {
+                                if (claimed1 >= 1) {
+                                    idle_cash += 5 * claimed1
+                                } else {
+                                    idle_cash += 1
+                                }
+                            }
+                        }
+                        total_money += idle_cash
+                        idleEl.textContent = idle_cash
+                        totalEl.textContent = total_money
                     }
-                    total_money += idle_cash
-                    idleEl.textContent = idle_cash
-                    totalEl.textContent = total_money
+                    idle_cash = 0
+                    //item luck
+                    if (item_luck() === 0) {
+                        item.textContent = `NICE! You were working and found a shoe 👟 that cost 200 JS dollars!`
+                        total_money += 200
+                        totalEl.textContent = total_money
+                        collect += 1
+                    } else if (item_luck() === 1) {
+                        item.textContent = `NICE! You were working and found some books 📚 that cost 300 JS dollars!`
+                        total_money += 300
+                        totalEl.textContent = total_money
+                        collect += 1
+                    } else if (item_luck() === 2) {
+                        item.textContent = `NICE! You were working and found a parcel 📦 that contained an antique! It costed 500 JS dollars!`
+                        total_money += 500
+                        totalEl.textContent = total_money
+                        collect += 1
+                    } else if (item_luck() === 3) {
+                        purse_money = Math.round(Math.random(0,1)*400)
+                        item.textContent = `NICE! You were working and found a purse 👛 that contained ${purse_money} JS dollars! The wallet itself costed 100 JS dollars!`
+                        total_money += purse_money + 100
+                        totalEl.textContent = total_money
+                        collect += 1
+                    } else if (item_luck() === 4) {
+                        item.textContent = `WOW! A ♣ Club Card into your collection!!`
+                        user_item.push("Club Card♣")
+                        cardc += 1
+                        card += 1
+                        if (cardc === 3) {
+                            item.textContent = `WOW! Another ♣ Club Card! The card now merges into the Free Labour Card!`
+                            workers += 1
+                            cardc = 0
+                            for (i=user_item.length-1; i>=0; i--) {
+                                if ("Club Card♣" === user_item[i]) {
+                                    user_item.pop(user_item[i])
+                                }
+                            }
+                        }
+                    } else if (item_luck() === 5) {
+                        item.textContent = `WOW! A ♠ Spade Card into your collection!!`
+                        user_item.push("Spade Card♠")
+                        cards += 1
+                        card += 1
+                        if (cards === 3) {
+                            item.textContent = `WOW! Another ♠ Spade Card! The card now merges into the Trendy Card!`
+                            cs = 1
+                            cards = 0
+                            for (i=user_item.length-1; i>=0; i--) {
+                                if ("Spade Card♠" === user_item[i]) {
+                                    user_item.pop(user_item[i])
+                                }
+                            }
+                        }
+                    } else if (item_luck() === 6) {
+                        item.textContent = `WOW! A ♥ Heart Card into your collection!!`
+                        user_item.push("Heart Card♥")
+                        cardh += 1
+                        card += 1
+                        if (cardh === 3) {
+                            item.textContent = `WOW! Another ♥ Heart Card! The card now merges into the Money-Money Card!`
+                            ch = 1
+                            cardh = 0
+                            for (i=user_item.length-1; i>=0; i--) {
+                                if ("Heart Card♥" === user_item[i]) {
+                                    user_item.pop(user_item[i])
+                                }
+                            }
+                        }
+                    } else if (item_luck() === 7) {
+                        item.textContent = `WOW! A ♦ Diamond Card into your collection!!`
+                        user_item.push("Diamond Card♦")
+                        cardd += 1
+                        card += 1
+                        if (cardd === 3) {
+                            item.textContent = `WOW! Another ♦ Diamond Card! The card now merges into the Number 1 Card!`
+                            cd = 1
+                            cardd = 0
+                            for (i=user_item.length-1; i>=0; i--) {
+                                if ("Diamond Card♦" === user_item[i]) {
+                                    user_item.pop(user_item[i])
+                                }
+                            }
+                        }
+                    } else {
+                        item.textContent = "You were glancing around your surroundings while working and found nothing.🫤"
+                    }
+                    //other texts
+                    if (workers >= 10 && checker2 === 0) {
+                        find_item.textContent = "Now you can use the FIND button!"
+                        checker2 = 1
+                    } else {
+                        find_item.textContent = ""
+                    }
+                    if (total_money >= 500 && checker1 < 2) {
+                        investment.textContent = "Now you can use the INVEST button!"
+                        checker1 += 1
+                    } else if (checker1 === 2) {
+                        investment.textContent = ""
+                    } else if (checker1 >= 4) {
+                        investment.textContent = ""
+                        extras.textContent = ""
+                        checker1 = 2
+                    }
+                    if (checker3 === 1) {
+                        checker3 += 1
+                    } else {
+                        shop.textContent = ""
+                        checker3 = 0
+                    }
+                    if (checker4 === 2) {
+                        inventory.textContent = ""
+                        checker4 = 0
+                    }
+                    if (checker5 === 3){
+                        crafts.textContent = ""
+                        checker5 = 0
+                    }
+                    if (collect === 5) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Collector!"
+                        counter += 1
+                    }
+                    if (card === 9) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Card Collector!"
+                        counter += 1
+                    }
+                    if (checker6 === 2) {
+                        earned.textContent = ""
+                        checker6 = 0
+                    }
+                    if (total_money >= 1000000) {
+                        earned.textContent = "Achievement Unlocked 🏆: Millionaire!"
+                        counter += 1
+                    } else if (total_money >= 100000) {
+                        earned.textContent = "Achievement Unlocked 🏆: 1 in 10!"
+                        counter += 1
+                    }
+                    setTimeout(auto, timer)
                 }
-                idle_cash = 0
-                //item luck
-                if (item_luck() === 0) {
-                    item.textContent = `NICE! You were working and found a shoe 👟 that cost 200 JS dollars!`
-                    total_money += 200
-                    totalEl.textContent = total_money
-                    counter += 1
-                } else if (item_luck() === 1) {
-                    item.textContent = `NICE! You were working and found some books 📚 that cost 300 JS dollars!`
-                    total_money += 300
-                    totalEl.textContent = total_money
-                    counter += 2
-                } else if (item_luck() === 2) {
-                    item.textContent = `NICE! You were working and found a parcel 📦 that contained an antique! It costed 500 JS dollars!`
-                    total_money += 500
-                    totalEl.textContent = total_money
-                    counter += 4
-                } else if (item_luck() === 3) {
-                    purse_money = Math.round(Math.random(0,1)*400)
-                    division = Math.round(purse_money / 100)
-                    item.textContent = `NICE! You were working and found a purse 👛 that contained ${purse_money} JS dollars! The wallet itself costed 100 JS dollars!`
-                    total_money += purse_money + 100
-                    totalEl.textContent = total_money
-                    counter += division
-                } else {
-                    item.textContent = "You were glancing around your surroundings while working and found nothing.🫤"
-                }
-                //other texts
-                if (total_money >= (counter * 100)) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
-                    counter += 1
-                }
-                if (workers >= 10 && checker2 === 0) {
-                    find_item.textContent = "Now you can use the FIND button!"
-                    checker2 = 1
-                } else {
-                    find_item.textContent = ""
-                }
-                if (total_money >= 500 && checker1 === 0) {
-                    investment.textContent = "Now you can use the INVEST button!"
-                    checker1 = 1
-                }
-                if (helped === 2) {
-                    helper.textContent = ""
-                    helped = 0
-                }
-                setTimeout(auto, timer)
             }
             
             function check_num(num) {
@@ -193,134 +686,187 @@
             }
             
             function invest() {
-                if (total_money < 500 && checker1 === 1) {
-                    investment.textContent = "You need at least 500 JS dollars for investment!"
-                    extras.textContent = ""
-                } else if (total_money < 500 && checker1 === 0) {
-                    investment.textContent = "Reach 500 JS dollars first to unlock this phrase"
-                } else {
-                    invest_money = prompt("Enter how much money you would like to invest💲")
-                    non = check_num(invest_money)
-                    while (non === true) {
+                if (start === true) {
+                    if (total_money < 500) {
+                        investment.textContent = "You need at least 500 JS dollars for investment!"
+                        extras.textContent = ""
+                    } else if (total_money >= 500 && checker1 === 2){
                         invest_money = prompt("Enter how much money you would like to invest💲")
                         non = check_num(invest_money)
-                    }
-                    invest_money = parseInt(invest_money)
-                    if (total_money < invest_money) {
-                        alert("You don't have enough money!")
-                    } else if (total_money >= invest_money) {
-                        total_money -= invest_money
-                        company = Math.round(Math.random(0,1)*3)
-                        if (company === 1) {
-                            total_money += 100
-                            extras.textContent = "You randomly invested in Company B and got an extra 100 JS dollars!🤑"
-                            totalEl.textContent = total_money
-                        } else if (company === 2) {
-                            extra_money = Math.round(Math.random(0,1)*500)
-                            total_money += extra_money
-                            extras.textContent = `You randomly invested in Company A and got an extra ${extra_money} JS dollars!🤑`
-                            totalEl.textContent = total_money
-                        } else {
-                            extras.textContent = "You randomly invested in Company C and got nothing in return, now that's sad!😕"
+                        while (non === true) {
+                            invest_money = prompt("Enter how much money you would like to invest💲")
+                            non = check_num(invest_money)
                         }
-                        luck = Math.round(Math.random(0,1)*10)
-                        if (luck === 1 || luck === 10) {
-                            investment.textContent = "And congrats! The company you invested succeeded with the money you gave them! They gave you double the amount you invested!📈"
-                            total_money += invest_money * 3
-                            totalEl.textContent = total_money
-                        } else if (luck === 3 || luck === 9) {
-                            investment.textContent = `However, the company you invested still loss profits.📉 -${invest_money} JS dollars 💸`
+                        invest_money = parseInt(invest_money)
+                        if (invest_money >= 10000) {
+                            earned.textContent = "Achievement Unlocked 🏆: Risk Taker!"
+                            counter += 1
+                        }
+                        if (total_money < invest_money) {
+                            alert("You don't have enough money!")
+                        } else if (total_money >= invest_money) {
                             total_money -= invest_money
-                            totalEl.textContent = total_money
-                        } else {
-                            investment.textContent = "However, the company you invested in got...the same stocks as before. No gain, no loss.😐"
-                            totalEl_textContent = total_money
+                            if (claimed4 === 1) {
+                                total_money += invest_money * 0.25
+                            } else {
+                                let coin_luck = Math.round(Math.random(0,1)*80)
+                                if (coin_luck === 40) {
+                                    user_item.push("Golden Coin🪙")
+                                    inventory.textContent = "You found a Golden Coin🪙 while investing!"
+                                    coin = 1
+                                }                                            
+                            }
+                            company = Math.round(Math.random(0,1)*3)
+                            if (ch === 1) {
+                                extra_money = 888
+                                total_money += extra_money
+                                extras.textContent = `Your Money-Money Card gave you a lot of luck and this led you to invest in a rich company who gave you an extra 888 JS dollars!🤑`
+                                turns += 1
+                                if (turns >= 3) {
+                                    ch = 0
+                                    turns = 0
+                                }
+                            } else {
+                                if (company === 1) {
+                                    total_money += 100
+                                    extras.textContent = "You randomly invested in Company B and got an extra 100 JS dollars!🤑"
+                                    totalEl.textContent = total_money
+                                } else if (company === 2) {
+                                    extra_money = Math.round(Math.random(0,1)*500)
+                                    total_money += extra_money
+                                    extras.textContent = `You randomly invested in Company A and got an extra ${extra_money} JS dollars!🤑`
+                                    totalEl.textContent = total_money
+                                } else {
+                                    extras.textContent = "You randomly invested in Company C and got nothing in return, now that's sad!😕"
+                                }
+                            }
+                            luck = Math.round(Math.random(0,1)*10)
+                            if (luck === 1 || luck === 10) {
+                                investment.textContent = "And congrats! The company you invested succeeded with the money you gave them! They gave you double the amount you invested!📈"
+                                total_money += invest_money * 3
+                                totalEl.textContent = total_money
+                            } else if (luck === 3 || luck === 9) {
+                                investment.textContent = `However, the company you invested still loss profits.📉 -${invest_money} JS dollars 💸`
+                                total_money -= invest_money
+                                totalEl.textContent = total_money
+                            } else {
+                                investment.textContent = "However, the company you invested in got...the same stocks as before. No gain, no loss.😐"
+                                totalEl_textContent = total_money
+                            }
                         }
                     }
+                    if (total_money < 0) {
+                        total_money = 0
+                        totalEl.textContent = total_money
+                    }
+                    textHire.textContent = ""
+                    shop.textContent = ""
+                    checker1 += 1
+                    if (checker1 === 3) {
+                        investment.textContent += "(Press the INVEST button ONCE again to close text)"
+                        extras.textContent += "(Press the INVEST button ONCE again to close text)"
+                    }
+                    if (coin === 1) {
+                        earned.textContent = "Achievement Unlocked 🏆: You had a four leaf clover, did you?!"
+                        counter += 1
+                    }
+                    if (total_money >= 1000000) {
+                        earned.textContent = "Achievement Unlocked 🏆: Millionaire!"
+                        counter += 1
+                    } else if (total_money >= 100000) {
+                        earned.textContent = "Achievement Unlocked 🏆: 1 in 10!"
+                        counter += 1
+                    }
                 }
-                if (total_money < 0) {
-                    total_money = 0
-                    totalEl.textContent = total_money
-                }
-                if (total_money >= (counter * 100)) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
-                    counter += 1
-                }
-                if (helped === 2) {
-                    helper.textContent = ""
-                }
-                textHire.textContent = ""
-                find_item.textContent = ""
             }
 
             function help() {
-                helper.textContent = "Hire: Gives an additional +1 JS dollar in auto earn. Invest : Invest any amout of JS dolars in businesses to either lose/earn money. Find : Find items that will bring benefits! Requires 5 workers to do so! Auto Earn: Not an interactive button, but allows you to earn money while being idle. Updates: For update info, click the DISCORD button! (Press the HELP button ONCE again to exit)"
-                helped += 1
-                if (total_money >= (counter * 100)) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
-                    counter += 1
+                alert('Hire : Gives an additional +1 JS dollar in auto earn.\n\nInvest : Invest any amout of JS dolars in businesses to either lose/earn money.\n\nFind : For gathering materials that can be crafted into something useful! Requires 20 workers to do so!\n\nMarket : Enter the trendy shop to find trendy items that you can buy or sell!\n\nCraft : Gather materials by using the find button! To craft an item, PRESS THE CRAFT BUTTON ONCE AGAIN to see you crafted item!\n\nInventory : Check what items you have right now!\n\nAchievements : The main goal of the game is to get all achievements!\n\nUpdates: For update info, click the DISCORD button!')
+                helping = null
+                while (helping !== "") {
+                    helping = prompt("Still need help? Type the name (all in caps) of the button to get more info about what each button do! (Press Enter to cancel)")
+                    if (helping === "HIRE") {
+                        alert("Hire : The HIRE button is essential to unlock other buttons such as FIND and MARKET! It will also gives an additional +1 JS dollars in auto earn!")
+                    } else if (helping === "INVEST") {
+                        alert("Invest : Invest your money in random companies! You can randomly get Company A (randomly giving extra 0 to 500 JS dollars), Company B (giving exactly 100 JS dollars), or Company C (giving nothing). You also either lose double your invested money, lose only the amount of invest, or gain double your invested amount.")
+                    } else if (helping === "FIND") {
+                        alert("Find : It requires 20 workers for this button to be activated! This button will let your workers find items/money (or sometimes, nothing) for you (but dont't worry, it DOES NOT deduct worker count). You can either find materials need for crafting, gain some money, or worse case, have to pay 500 JS dollars for letting your workers waste their energy.")
+                    } else if (helping === "MARKET") {
+                        alert("Market : Enter the trendy market, where you can find special deals, and some unique items! Buy or Sell the item that is available in the market!")
+                    } else if (helping === "CRAFT") {
+                        alert("Craft : This button allows you to craft items based on what the recipes gives! Gather these materials in find to receive minor/major boost for your progress!\n(Tip : If you can't find the given materials using the FIND button, try looking somewhere else)")
+                    } else if (helping === "INVENTORY") {
+                        alert("Inventory : This button is useful for looking at what items you have and don't have!")
+                    } else if (helping === "ACHIEVEMENTS") {
+                        alert("Achievements : The main goal of the game! Getting all achievements!")
+                        earned.textContent = "Achievement Unlocked 🏆: There Is An Achievement For This!"
+                        counter += 1
+                    } else if (helping === "DISCORD"){
+                        alert("Discord : Join the discord to receive updates of JS Bankers and other games whip up by Game Beta Studios!")
+                    } else if (helping === "ITEMS") {
+                        alert("List of items you can craft:\n\nRobot 🤖: Gives an additonal +10 JS dollars in auto earn, can be stacked.(Hint : Must be lucky)\nLunchBox 🥡: Each worker earn an additional +5 JS dollars for you, can be stacked\nTrendy Watch ⌚: Have a small chance of getting a free deal in the trendy market, can be crafted ONLY ONCE.\n(Hint : #trendy)\nRich Hat 🎩: Loses only 75% of invested amount.\n(Hint : It's given)\n\nList of items in trendy market:\n\nShoe,Book,Antique,Purse,???\n\nList of items that can be obtained in auto earn:\n\nShoe : +200 JS dollars,Books : +300 JS dollars,Parcel : + 500 JS dollars,Purse : +100 & an extra random amount of money range from 0 to 400 JS dollars.")
+                    } else if (helping === "CARDS") {
+                        alert("List of cards you can obtain:\n\nNumber 1 card : Requires 3 diamond cards, auto earn is decreased from 3 seconds to 0 second. The seconds will increase by 0.01 each time till it reaches 1 second.\nMoney-Money card : Require 3 heart cards, you will now invest in a rich company, giving +888 JS dollars whenever you invest for 3 turns.\nTrendy card : Require 3 spade cards, gives any item with a 90% discount.\nFree Labour card : Require 3 club cards, instantly gets a free worker.")
+                    } else if (helping === "") {
+                        alert("Exited! Use this button again if you are stuck! Enjoy 😁!")
+                    } else {
+                        alert("Invalid input (Press Enter to exit!!!)")
+                    }            
                 }
                 textHire.textContent = ""
                 investment.textContent = ""
                 extras.textContent = ""
                 find_item.textContent = ""
+                shop.textContent = ""
             }   
 
             function hire() {
-                investment.textContent = ""
-                extras.textContent = ""
-                to_hire = prompt("Enter how many workers you would like to hire🫴")
-                non = check_num(to_hire)
-                while (non === true) {
+                if (start === true) {
+                    investment.textContent = ""
+                    extras.textContent = ""
                     to_hire = prompt("Enter how many workers you would like to hire🫴")
                     non = check_num(to_hire)
+                    while (non === true) {
+                        to_hire = prompt("Enter how many workers you would like to hire🫴")
+                        non = check_num(to_hire)
+                    }
+                    to_hire = parseInt(to_hire)
+                    hired_total += to_hire
+                    limit_worker = 100 - hired_total
+                    if (total_money < (100 * to_hire)) {
+                        textHire.textContent = "You don't have enough money!"
+                        hired_total -= to_hire
+                    } else if (limit_worker < 0) {
+                        textHire.textContent = "You have exceeded the limit of workers!"
+                        hired_total -= to_hire
+                        earned.textContent = "Achievement Unlocked 🏆: Enough Is Enough!"
+                        counter += 1
+                    } else if (total_money >= (100 * to_hire)) {
+                        textHire.textContent = `Hired! -${100 * to_hire} JS dollars 💸`
+                        let hired = 100
+                        total_money -= (hired * to_hire)
+                        totalEl.textContent = total_money
+                        workers += to_hire
+                        return(workers)
+                    }
+                    if (workers >= 10 && checker2 === 0) {
+                        find_item.textContent = "Now you can use the FIND button!"
+                        checker2 = 1
+                    } else {
+                        find_item.textContent = ""
+                    }
+                    investment.textContent = ""
+                    extras.textContent = ""
+                    shop.textContent = ""
+                    if (total_money >= 1000000) {
+                        earned.textContent = "Achievement Unlocked 🏆: Millionaire!"
+                        counter += 1
+                    } else if (total_money >= 100000) {
+                        earned.textContent = "Achievement Unlocked 🏆: 1 in 10!"
+                        counter += 1
+                    }
                 }
-                to_hire = parseInt(to_hire)
-                hired_total += to_hire
-                limit_worker = 500 - hired_total
-                if (total_money < (100 * to_hire)) {
-                    textHire.textContent = "You don't have enough money!"
-                    hired_total -= to_hire
-                } else if (limit_worker < 0) {
-                    textHire.textContent = "You have exceeded the limit of workers!"
-                    hired_total -= to_hire
-                } else if (total_money >= (100 * to_hire)) {
-                    textHire.textContent = `Hired! -${100 * to_hire} JS dollars 💸`
-                    let hired = 100
-                    total_money -= (hired * to_hire)
-                    totalEl.textContent = total_money
-                    workers += to_hire
-                    return(workers)
-                }
-                if (total_money >= (counter * 100)) {
-                    textEl.textContent = `Nice job! That's ${counter * 100} JS dollars 👏`
-                    counter += 1
-                }
-                if (workers >= 10 && checker2 === 0) {
-                    find_item.textContent = "Now you can use the FIND button!"
-                    checker2 = 1
-                } else {
-                    find_item.textContent = ""
-                }
-                investment.textContent = ""
-                extras.textContent = ""
             }
-
-            /*function earn() {
-                if (op_luck() === 0 && claimed1 === 0) {
-                    gg.textContent = "LUCKY!!! You found a LunchBox 🥡 that is packed with food! You had your own lunch, so you gave it to your workers, and now they feel energized!"
-                    claimed1 = 1
-                } else if (op_luck() === 1 && claimed2 === 0) {
-                    gg.textContent = "LUCKY!!! You found a broken Robot 🤖 that looks fixable, and after repairing it, it was able to help you earn more side cash!"
-                    claimed2 = 1
-                } else if (op_luck() === 0 && claimed1 === 1) {
-                    gg.textContent = "You found another LunchBox, but your workers were full from the lunch you gave them. Maybe next time!🫤"
-                } else if (op_luck() === 1 && claimed2 === 1) {
-                    gg.textContent = "You found another broken robot, but it is not fixable!🥲"
-                } else {
-                    gg.textContent = ""
-                }
-            }*/
         </script>
     </body>
 </html>

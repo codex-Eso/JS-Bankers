@@ -41,3 +41,12 @@ text {
     color: #00E700;
     font-size: 28px;
 }
+
+.special_btn {
+    color: #00E700;
+    background: #000000;
+    font-weight: bold;
+    border: none;
+    font-size: 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
