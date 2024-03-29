@@ -21,7 +21,7 @@
             <a href = "https://discord.com/invite/zBQF3ts486" target = "_blank">
                 <button class="btn"><strong>DISCORD👋</strong></button>
             </a>
-            <button class="btn" onclick="crediting()"><strong>CREDITS🙏</strong></�button>
+            <button class="btn" onclick="crediting()"><strong>CREDITS🙏</strong></button>�
         </div>
         <br><br>
         <div class="texts">
@@ -94,7 +94,7 @@
             let timer = 0
             //achievements
             let earned = document.getElementById("congrats")
-            let counter = 0
+            let counter = 24
             let crafted = 0
             let bought = 0
             let selling = 0
@@ -121,14 +121,16 @@
             }
             
             function achievements() {
-                if (start === true && counter === 25) {
-                    alert("All Achievements 🏆:Curiousity : Find the unique button\n\nEnough Is Enough : Get the max amount of workers you can hire\n\nMaxed Trend : Sell your trendy watch\n\nRisk Taker : Invest 10000 JS dollars\n\nSPECIAL DEAL! : Get the mechanical part\n\nThe Buyer : Buy a item from the trendy market\n\nThe Card Collector : Obtain 9 cards in auto earn\n\nThe Collector : Obtain 5 items in auto earn\n\nThe CraftsMan : Craft 1 item\n\nThe Lucky : Get 1 item from find\n\nThe Reseller? : Sell 5 items in the trendy market\n\nThe Rich one who always buys stuff 🙄 : Buy 5 items\n\nThe Robber : Rob the market\n\nThe Seller : Sell 1 item in the trendy market\n\nThe Social : Click on the DISCORD button\n\nThe Superior Crafter : Craft 4 items\n\nThe TryHard : Get all achievements\n\nThere Is An Achievement For This : Click on the HELP button, then type achievements\n\nTutorial : Go through the tutorial\n\nUp To Trend : Get a trendy watch\n\nYou had a four leaf clover, did you? : Get the golden coin\nAchievements : 25/25")
-                    if (counter === 24) {
+                if (start === true && counter >= 24) {
+                    alert("All Achievements 🏆:\n\nCuriousity : Find the unique button\n\nEnough Is Enough : Get the max amount of workers you can hire\n\nMaxed Trend : Sell your trendy watch\n\nRisk Taker : Invest 10000 JS dollars\n\nSPECIAL DEAL! : Get the mechanical part\n\nThe Buyer : Buy a item from the trendy market\n\nThe Card Collector : Obtain 9 cards in auto earn\n\nThe Collector : Obtain 5 items in auto earn\n\nThe CraftsMan : Craft 1 item\n\nThe Lucky : Get 1 item from find\n\nThe Reseller? : Sell 5 items in the trendy market\nPage 1/2")
+                    alert("All Achievements 🏆:\n\nThe Rich one who always buys stuff 🙄 : Buy 5 items\n\nThe Robber : Rob the market\n\nThe Seller : Sell 1 item in the trendy market\n\nThe Social : Click on the DISCORD button\n\nThe Superior Crafter : Craft 4 items\n\nThe TryHard : Get all achievements\n\nThere Is An Achievement For This : Click on the HELP button, then type achievements\n\nTutorial : Go through the tutorial\n\nUp To Trend : Get a trendy watch\n\nYou had a four leaf clover, did you? : Get the golden coin\nAchievements : 24/24\nPage 2/2")
+                    counter = 24
+                    if (counter === 23) {
                         earned.textContent = "Achievement Unlocked 🏆: The TryHard!"
                         counter += 1
                     }
-                } else if (counter !== 25) {
-                    alert(`You need to complete all 25 achievements to complete the game!\nAchievements : ${counter}/25`)
+                } else if (counter !== 24) {
+                    alert(`You need to complete all 24 achievements to complete the game!\nAchievements : ${counter}/24`)
                 }
             }
             
