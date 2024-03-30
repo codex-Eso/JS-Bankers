@@ -53,7 +53,7 @@
                     e.preventDefault();
                 }
             })
-            let total_money = 100
+            let total_money = 500
             let totalEl = document.getElementById("total")
             let textHire = document.getElementById("hiring")
             let hired_total = 0
@@ -785,7 +785,7 @@
                     } else if (total_money >= 500 && checker1 === 2){
                         invest_money = prompt("Enter how much money you would like to invest💲")
                         non = check_num(invest_money)
-                        while (non === true) {
+                        while (non === true || invest_money <= 0) {
                             invest_money = prompt("Enter how much money you would like to invest💲")
                             non = check_num(invest_money)
                         }
@@ -933,7 +933,7 @@
                     extras.textContent = ""
                     to_hire = prompt("Enter how many workers you would like to hire🫴")
                     non = check_num(to_hire)
-                    while (non === true) {
+                    while (non === true || to_hire <= 0) {
                         to_hire = prompt("Enter how many workers you would like to hire🫴")
                         non = check_num(to_hire)
                     }
