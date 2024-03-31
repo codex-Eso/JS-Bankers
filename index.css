@@ -1,11 +1,50 @@
-.bg {
-    background : #000000;
-    text-align : center;
-    font-family : Verdana, Geneva, Tahoma, sans-serif;
-    color : #00E700;
-    font-size : 28px;
-    font-weight : bold
+.buttons {
+    display: inline;
 }
+
+.btn {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-right: 6px;
+    background: #00E700;
+    padding: 3px 8px 3px 8px;
+    border-radius: 3px;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
 html, body {
-    background : #000000;
+    background: #1EA51E;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+text {
+    text-align: center;
+}
+
+.texts {
+    color: #000000;
+    font-weight: bold;
+    font-size: 28px;
+    display: flex;
+    justify-content: space-around
+}
+
+.your_money {
+    display: block;
+}
+
+.start {
+    color: #000000;
+    font-size: 28px;
+}
+
+.special_btn {
+    color: #000000;
+    background: #1EA51E;
+    font-weight: bold;
+    border: none;
+    font-size: 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
