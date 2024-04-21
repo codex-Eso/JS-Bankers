@@ -18,7 +18,7 @@
             <button class="btn" onclick="crafting()"><strong>CRAFT🛠</strong></button>
             <button class="btn" onclick="bag()"><strong>INVENTORY🎒</strong></button>
             <button class="btn" onclick="achievements()"><strong>ACHIEVEMENTS🏆</button>
-            <a href = "https://discord.gg/z3zNgCuk" target = "_blank">
+            <a href = "https://discord.gg/wFVeavmRaB" target = "_blank">
                 <button class="btn" onclick="discord()"><strong>DISCORD👋</strong></button>
             </a>
             <button class="btn" onclick="crediting()"><strong>CREDITS🙏</strong></button>
@@ -130,12 +130,14 @@
             let clicked21 = 0
             let clicked22 = 0
             let clicked23 = 0
+            let clicked24 = 0
+            let selling_inv = 0
             //start
             let starting = 0
             let start = true
             
             function crediting() {
-                alert("Credits and Special Thanks:\n\nThe Website Where I Did All My Coding\n👉https://scrimba.com/\n\nWebsite Creation\n👉https://github.com/\n👉https://www.netlify.com/\n\nCreator : Game Beta Studios (Codex_Eso/Esmond)\n\nSpecial Thanks : All Beta Testers :)")
+                alert("Credits and Special Thanks:\n\nThe Website Where I Did All My Coding\n👉https://scrimba.com/\n\nWebsite Creation\n👉https://github.com/\n👉https://www.netlify.com/\n\nCreator : Game Beta Studios (Codex_Eso)\n\nSpecial Thanks : All Beta Testers :)")
             }
             
             function special() {
@@ -148,15 +150,14 @@
             
             function achievements() {
                 if (start === true && counter >= 24) {
-                    alert("All Achievements 🏆:\n\nCuriousity : Find the unique button\n\nEnough Is Enough : Get the max amount of workers you can hire\n\nMaxed Trend : Sell your trendy watch\n\nRisk Taker : Invest 10000 JS dollars\n\nSPECIAL DEAL! : Get the mechanical part\n\nThe Buyer : Buy a item from the trendy market\n\nThe Card Collector : Obtain 9 cards in auto earn\n\nThe Collector : Obtain 5 items in auto earn\n\nThe CraftsMan : Craft 1 item\n\nThe Lucky : Get 1 item from find\n\nThe Reseller? : Sell 5 items in the trendy market\nPage 1/2")
-                    alert("All Achievements 🏆:\n\nThe Rich one who always buys stuff 🙄 : Buy 5 items\n\nThe Robber : Rob the market\n\nThe Seller : Sell 1 item in the trendy market\n\nThe Social : Click on the DISCORD button\n\nThe Superior Crafter : Craft 4 items\n\nThe TryHard : Get all achievements\n\nThere Is An Achievement For This : Click on the HELP button, then type achievements\n\nTutorial : Go through the tutorial\n\nUp To Trend : Get a trendy watch\n\nYou had a four leaf clover, did you? : Get the golden coin\nAchievements : 24/24\nPage 2/2")
-                    counter = 24
-                    if (counter === 23) {
+                    alert("Achievements 25/25🏆:\n\nCuriousity : Find the unique button\n\nEnough Is Enough : Get the max amount of workers you can hire\n\nMaxed Trend : Sell your trendy watch\n\nRisk Taker : Invest 10000 JS dollars\n\nSPECIAL DEAL! : Get the mechanical part\n\nThe Buyer : Buy a item from the trendy market\n\nThe Card Collector : Obtain 9 cards in auto earn\n\nThe Collector : Obtain 5 items in auto earn\n\nThe CraftsMan : Craft 1 item\n\nThe Lucky : Get 1 item from find\n\nThe Pro Seller?! : Sell 5 items in your inventory\nPage 1/2")
+                    alert("The Reseller? : Sell 5 items in the trendy market\n\nThe Rich one who always buys stuff 🙄 : Buy 5 items\n\nThe Robber : Rob the market\n\nThe Seller : Sell 1 item in the trendy market\n\nThe Social : Click on the DISCORD button\n\nThe Superior Crafter : Craft 4 items\n\nThe TryHard : Get all achievements\n\nThere Is An Achievement For This : Click on the HELP button, then type achievements\n\nTutorial : Go through the tutorial\n\nUp To Trend : Get a trendy watch\n\nYou had a four leaf clover, did you? : Get the golden coin\nPage 2/2")
+                    if (counter === 24) {
                         earned.textContent = "Achievement Unlocked 🏆: The TryHard!"
                         counter += 1
                     }
-                } else if (counter !== 24) {
-                    alert(`You need to complete all 24 achievements to complete the game!\nAchievements : ${counter}/24`)
+                } else {
+                    alert(`You need to complete all 25 achievements to complete the game!\nAchievements : ${counter}/25`)
                 }
             }
             
@@ -171,9 +172,9 @@
             function starts() {
                 starting += 1
                 if (starting === 1) {
-                    item.textContent = "Hi, thanks for playing, now let's start earning some JS dollars! (PRESS EARN TO CONTINUE)"
+                    crafts.textContent = "Hi, thanks for playing, now let's start earning some JS dollars! (PRESS EARN TO CONTINUE)"
                 } else if (starting === 2) {
-                    item.textContent = ""
+                    crafts.textContent = ""
                     textHire.textContent = "On your left, you will see Earnings. That's the total amount of money you earn automatically every 3 seconds! (PRESS EARN TO CONTINUE)"
                 } else if (starting === 3) {
                     textHire.textContent = ""
@@ -182,10 +183,9 @@
                     extras.textContent = ""
                     investment.textContent = "You will start with 100 JS dollars for you to start hiring a worker to help you gain more earnings! (PRESS EARN TO CONTINUE)"
                 } else if (starting === 5) {
-                    investment.textContent = ""
-                    shop.textContent = "But that's not all you can do with your money here! You can invest your money to either gain or lose more money, find and craft materials to gain boosts/benefits, and lastly, shop for items! (PRESS EARN TO CONTINUE)"
+                    investment.textContent = "But that's not all you can do with your money here! You can invest your money to either gain or lose more money, find and craft materials to gain boosts/benefits, and lastly, shop for items! (PRESS EARN TO CONTINUE)"
                 } else if (starting === 6) {
-                    shop.textContent = ""
+                    investment.textContent = ""
                     inventory.textContent = "The main goal for this game is to find all achievements! So good luck and enjoy! Make sure to join the Discord server by pressing the DISCORD button to receive updates about the game! (PRESS EARN TO CONTINUE)😁"
                 } else if (starting === 7) {
                     inventory.textContent = ""
@@ -194,7 +194,19 @@
                         counter += 1
                         clicked3 = 1
                     }
+                } else {
+                    
                 }
+            }
+            
+            function removal(msg) {
+                p = 0
+                for (i = 0; i <= user_item.length-1; i++) {
+                    if (user_item[i] === msg) {
+                        p = i
+                    }
+                }
+                return p
             }
             
             function bag() {
@@ -217,7 +229,7 @@
                     robot_item = 0
                     lunchbox_item = 0
                     rich_hat = 0
-                    crafts.textContent = "Crafting Recipes:\nRobot 🤖 = ⚙ + 🔩 + 🔋, LunchBox 🥡 = 📜 + 📜 + 🥪, Trendy Watch ⌚ = 🕛 + 🏪, Rich Hat 🎩 = 🪙 + 🧣 + 👒(Press the CRAFTING button TWICE again to cancel)"
+                    crafts.textContent = "Crafting Recipes:\nRobot 🤖 = ⚙ + 🔩 + 🔋, LunchBox 🥡 = 📜 + 📜 + 🥪, Trendy Watch ⌚ = 🕛 + 🏪, Rich Hat 🎩 = 🪙 + 🧣 + 👒(Press the CRAFT button ONCE again to cancel, else to exit, press it TWICE again)"
                     for (i = user_item.length - 1; i >= 0; i--) {
                         if ("Battery🔋" === user_item[i]) {
                             robot_item += 1
@@ -249,19 +261,19 @@
                     }
                     if (robot_item >= 3 && checker5 === 1) {
                         claimed2 += 1
-                        crafts.textContent = "Robot 🤖 successfully crafted! The Robot now helps you earn more auto cash! (Press the CRAFTING button ONCE again to cancel)"
-                        user_item.pop("Nut And Bolt🔩")
-                        user_item.pop("Mechanical Part⚙")
-                        user_item.pop("Battery🔋")
+                        crafts.textContent = "Robot 🤖 successfully crafted! The Robot now helps you earn more auto cash! (Press the CRAFT button ONCE again to cancel)"
+                        user_item.splice(removal("Nut And Bolt🔩"),1)
+                        user_item.splice(removal("Mechanical Part⚙"),1)
+                        user_item.splice(removal("Battery🔋"),1)
                         user_item.push("Robot 🤖")
                         robot_item = 0
                         crafted += 1
                     } else if (lunchbox_item >= 3 && checker5 === 1) {
                         claimed1 += 1
-                        crafts.textContent = "LunchBox 🥡 successfully crafted! You fed your workers and they feel energized! (Press the CRAFTING button ONCE again to cancel)"
-                        user_item.pop("Torn Recipe Part B📜")
-                        user_item.pop("Torn Recipe Part A📜")
-                        user_item.pop("Sandwich🥪")
+                        crafts.textContent = "LunchBox 🥡 successfully crafted! You fed your workers and they feel energized! (Press the CRAFT button ONCE again to cancel)"
+                        user_item.splice(removal("Torn Recipe Part B📜"),1)
+                        user_item.splice(removal("Torn Recipe Part A📜"),1)
+                        user_item.splice(removal("Sandwich🥪"),1)
                         lunchbox_item = 0
                         crafted += 1
                     } else if (rich_hat >= 3 && checker5 === 1) {
@@ -273,12 +285,14 @@
                             crafts.textContent = "Rich Hat 🎩 successfully crafted! You wore it on yourself and felt like the luckiest man for investments!"
                             user_item.push("Rich Hat 🎩")
                         }
-                        user_item.pop("Scarf🧣")
-                        user_item.pop("Golden Coin🪙")
-                        user_item.pop("Hat👒")
+                        user_item.splice(removal("Scarf🧣"),1)
+                        user_item.splice(removal("Golden Coin🪙"),1)
+                        user_item.splice(removal("Hat👒"),1)
                         claimed4 = 1
                         rich_hat = 0
                         crafted += 1
+                    } else if (checker5 === 1){
+                        crafts.textContent = "You have nothing to craft right now!😐 (Press the CRAFT button ONCE again to cancel)"
                     }
                     checker5 += 1
                     if (crafted === 1) {
@@ -358,7 +372,27 @@
                             option = prompt("Buy or Sell? (You can press enter if you don't want to do neither of these options)")
                         }
                         if (option === "") {
-                            shop.textContent = "You left the market empty handed."
+                            sell_inv = prompt(`Anything else? You may sell items in your inventory for 2000 JS dollars each!\nYour Inventory:\n\n${user_item}\n(Type Y to continue selling items in your inventory to the trendy market, else press Enter to cancel!)`)
+                            while (sell_inv !== "Y" && sell_inv !== "") {
+                                sell_inv = prompt(`Anything else? You may sell items in your inventory for 2000 JS dollars each!\nYour Inventory:\n\n${user_item}\n\n(Type Y to continue selling extra items in your inventory to the trendy market, else press Enter to cancel!)`)
+                            }
+                            if (sell_inv === "Y") {
+                                inv_sell = prompt(`Inventory:\n${user_item}\nType the items you want to sell (WITH EMOJI), Enter to stop/cancel.`)
+                                while (inv_sell !== "") {
+                                    if (op_item.includes(inv_sell) === true && user_item.includes(inv_sell)) {
+                                        user_item.splice(removal(inv_sell),1)
+                                        alert(`You have sold ${inv_sell} for 2200 JS dollars!`)
+                                        total_money += 2200
+                                        totalEl.textContent = total_money
+                                        selling_inv += 1
+                                    } else {
+                                        alert("That is either:\n1. An item only sellable when the trendy markets sells it\n2. Mispelled item\n3. An item not in your inventory right now\n\nCheck your inventory again!")
+                                    }
+                                    inv_sell = prompt(`Inventory:\n${user_item}\nType the extra items you want to sell, Enter to stop/cancel.`)
+                                }
+                            } else {
+                                shop.textContent = "You left the market empty-handed!😐"
+                            }
                         } else if (option === "Buy") {
                             shop.textContent = `Purchase done! You have bought a ${item}! - ${item_price} JS dollars💸!`
                             if (total_money >= item_price) {
@@ -376,7 +410,7 @@
                                     total_money += item_price
                                     totalEl.textContent = total_money
                                     purchase = true
-                                    user_item.pop(user_item)
+                                    user_item.splice(removal(item),1)
                                     selling += 1
                                 }
                             }
@@ -410,16 +444,16 @@
                         } else if (option === "#trendywatch") {
                             shop.textContent = "Trendy Indeed!"
                             if (claimed3 === 1) {
-                                shop.textContent = "You have gotten a Trendy Watch, so you sold it for 2000 JS dollars instead 🤑!"
-                                user_item.pop("Clock Piece🕛")
-                                total_money += 2000
+                                shop.textContent = "You have gotten a Trendy Watch, so you sold it for 4000 JS dollars instead 🤑!"
+                                user_item.splice(removal("Clock Piece🕛"),1)
+                                total_money += 4000
                                 totalEl.textContent = total_money
                                 trendy += 1
                             } else {
                                 for (i=user_item.length-1;i>=0;i--) {
                                     if ("Clock Piece🕛" === user_item[i] && claimed3 === 0) {
                                         shop.textContent = "You got yourself a Trendy Watch ⌚!"
-                                        user_item.pop("Clock Piece🕛")
+                                        user_item.splice(removal("Clock Piece🕛"),1)
                                         user_item.push("Trendy Watch ⌚")
                                         claimed3 = 1
                                         trendy += 1
@@ -488,13 +522,20 @@
                             clicked15 = 1
                         }
                     }
+                    if (selling_inv === 5) {
+                        earned.textContent = "Achievement Unlocked 🏆: The Pro Seller?!"
+                        if (clicked24 === 0) {
+                            counter += 1
+                            clicked24 = 1
+                        }
+                    }
                 }
             }
 
             function find() {
                 if (start === true) {
-                    if (workers <= 19) {
-                        find_item.textContent = "You need 20 workers to do this!"
+                    if (workers <= 19 || total_money < 1000) {
+                        find_item.textContent = "You need 20 workers and 1000 JS dollars to do this!"
                     } else if (op_luck() === "Nothing") {
                         find_item.textContent = `Your workers found nothing! You needed to pay your workers for helping you find items! - 500 JS dollars 💸`
                         total_money -= 500
@@ -529,7 +570,7 @@
                         clicked16 = 1
                     }
                 }
-                if (lucky === 0) {
+                if (lucky === 1) {
                     earned.textContent = "Achievement Unlocked 🏆: The Lucky!"
                     if (clicked17 === 0) {
                         counter += 1
@@ -655,7 +696,7 @@
                             cardc = 0
                             for (i=user_item.length-1; i>=0; i--) {
                                 if ("Club Card♣" === user_item[i]) {
-                                    user_item.pop(user_item[i])
+                                    user_item.splice(removal(user_item[i]),1)
                                 }
                             }
                         }
@@ -670,7 +711,7 @@
                             cards = 0
                             for (i=user_item.length-1; i>=0; i--) {
                                 if ("Spade Card♠" === user_item[i]) {
-                                    user_item.pop(user_item[i])
+                                    user_item.splice(removal(user_item[i]),1)
                                 }
                             }
                         }
@@ -685,7 +726,7 @@
                             cardh = 0
                             for (i=user_item.length-1; i>=0; i--) {
                                 if ("Heart Card♥" === user_item[i]) {
-                                    user_item.pop(user_item[i])
+                                    user_item.splice(removal(user_item[i]),1)
                                 }
                             }
                         }
@@ -700,7 +741,7 @@
                             cardd = 0
                             for (i=user_item.length-1; i>=0; i--) {
                                 if ("Diamond Card♦" === user_item[i]) {
-                                    user_item.pop(user_item[i])
+                                    user_item.splice(removal(user_item[i]),1)
                                 }
                             }
                         }
@@ -708,7 +749,7 @@
                         item.textContent = "You were glancing around your surroundings while working and found nothing.🫤"
                     }
                     //other texts
-                    if (workers >= 20 && checker2 === 0) {
+                    if (workers >= 20 && total_money >= 1000 && checker2 === 0) {
                         find_item.textContent = "Now you can use the FIND button!"
                         checker2 = 1
                     } else {
